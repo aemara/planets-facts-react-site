@@ -7,6 +7,11 @@
   --clr-nav-icon-saturn: #fccb6b;
   --clr-nav-icon-uranus: #65f0d5;
   --clr-nav-icon-neptune: #497efa;
+
+  /*FONTS*/
+
+  --ff-spartan: "Spartan", sans-serif;
+  --ff-antonio: "Antonio", sans-serif;
 }
 
 * {

@@ -3,6 +3,7 @@ import PlanetImage from './Components/PlanetImage';
 import StructureSurfaceToggle from './Components/StructureSurfaceToggle';
 import styled from 'styled-components';
 import PlanetDescription  from './Components/PlanetDescription';
+import QuantativeInfo from './Components/QuantativeInfo';
 
 const MainContainer = styled.main`
   display: flex;
@@ -18,6 +19,7 @@ function App() {
       <MainContainer>
         <PlanetImage />
         <PlanetDescription />
+        <QuantativeInfo />
       </MainContainer>
     </div>
   );

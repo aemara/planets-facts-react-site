@@ -1,3 +1,14 @@
+:root {
+  --clr-nav-icon-mercury: #def4fc;
+  --clr-nav-icon-venus: #f7cc7f;
+  --clr-nav-icon-earth: #545bfe;
+  --clr-nav-icon-mars: #ff6a45;
+  --clr-nav-icon-jupiter: #ecad7a;
+  --clr-nav-icon-saturn: #fccb6b;
+  --clr-nav-icon-uranus: #65f0d5;
+  --clr-nav-icon-neptune: #497efa;
+}
+
 * {
   margin: 0;
   padding: 0;

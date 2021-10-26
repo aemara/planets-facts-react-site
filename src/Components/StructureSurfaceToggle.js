@@ -27,12 +27,14 @@ const ToggleButton = styled.button`
   }
 `;
 
-const StructureSurfaceToggle = () => {
+const StructureSurfaceToggle = ({aspect, changeAspect}) => {
     return (
       <MobileToggle>
-        <ToggleButton>overview</ToggleButton>
-        <ToggleButton>structure</ToggleButton>
-        <ToggleButton>surface</ToggleButton>
+        <ToggleButton onClick={() => changeAspect("overview")} >overview</ToggleButton>
+        <ToggleButton onClick={() => changeAspect("structure")}>
+          structure
+        </ToggleButton>
+        <ToggleButton onClick={() => changeAspect("surface")}>surface</ToggleButton>
       </MobileToggle>
     );
 }

@@ -4,7 +4,6 @@ import styled from 'styled-components';
 const QuantativeInfoSection = styled.div`
     color: #ffffff;
     margin-top: 1.75em; 
-
 `;
 
 const Attribute = styled.div`
@@ -32,24 +31,24 @@ const AttributeValue = styled.p`
 
 
 
-const QuantativeInfo = () => {
+const QuantativeInfo = ({planetData}) => {
     return (
       <QuantativeInfoSection>
-        <Attribute rotation>
+        <Attribute >
           <AttributeName>rotation time</AttributeName>
-          <AttributeValue>0.99 days</AttributeValue>
+          <AttributeValue>{planetData.rotation}</AttributeValue>
         </Attribute>
-        <Attribute revolution>
+        <Attribute >
           <AttributeName>revolution time</AttributeName>
-          <AttributeValue>365.26 days</AttributeValue>
+          <AttributeValue>{planetData.revolution}</AttributeValue>
         </Attribute>
-        <Attribute radius>
+        <Attribute >
           <AttributeName>radius</AttributeName>
-          <AttributeValue>6371 km</AttributeValue>
+          <AttributeValue>{planetData.radius}</AttributeValue>
         </Attribute>
-        <Attribute temperature>
+        <Attribute >
           <AttributeName>average temp.</AttributeName>
-          <AttributeValue>16ºc</AttributeValue>
+          <AttributeValue>{planetData.temperature}</AttributeValue>
         </Attribute>
       </QuantativeInfoSection>
     );

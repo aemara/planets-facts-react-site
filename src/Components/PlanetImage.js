@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import image from '../assets/planet-earth.svg';
+
 
 const ImageSection = styled.section`
     display: flex;
@@ -10,14 +10,21 @@ const ImageSection = styled.section`
     margin-bottom: 4.2em;
 `
 
-const PlanetImage = () => {
+
+const PlanetImage = ({planetData, aspect}) => {
+    
+    const renderImage = () => {
+        if(aspect === 'overview') {
+            return (planetData.images.planet)
+        } else if(aspect === 'structure') {
+            return (planetData.images.internal)
+        } 
+    }
+
     return (
       <ImageSection>
-        <img
-          src={image}
-          style={{ 'width': '50%'}}
-          alt="planet"
-        />
+        <img src={renderImage()} style={{ width: "50%" }} alt="planet" />
+        
       </ImageSection>
     );
 }

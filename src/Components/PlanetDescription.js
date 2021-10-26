@@ -17,7 +17,7 @@ const Description = styled.p`
   font-size: 0.68rem;
   font-family: var(--ff-spartan);
   line-height: 22px;
-  margin-bottom: 0.7em;
+  margin-bottom: 1em;
 `;
 
 const SourceLink = styled.div`
@@ -41,19 +41,40 @@ const SourceLink = styled.div`
   }
 `;
 
-export const PlanetDescription = () => {
+export const PlanetDescription = ({planetData, aspect}) => {
+
+    const renderDescription = () => {
+        if(aspect === 'overview') {
+            return (planetData.overview.content);
+        } else if(aspect === 'structure') {
+            return (planetData.structure.content);
+        } else {
+            return (planetData.geology.content);
+        }
+        
+    }
+
+    
+    const renderSource = () => {
+        if (aspect === "overview") {
+          return planetData.overview.source;
+        } else if (aspect === "structure") {
+          return planetData.structure.source;
+        } else {
+          return planetData.geology.source;
+        }
+    }
+    
+
     return (
       <DescriptionSection>
-        <PlanetTitle>earth</PlanetTitle>
+        <PlanetTitle>{planetData.name}</PlanetTitle>
         <Description>
-          Third planet from the Sun and the only known planet to harbor life.
-          About 29.2% of Earth's surface is land with remaining 70.8% is covered
-          with water. Earth's distance from the Sun, physical properties and
-          geological history have allowed life to evolve and thrive.
+          {renderDescription()}
         </Description>
         <SourceLink>
           <span>source : </span>
-          <a href="https://en.wikipedia.org/wiki/Earth">wikipedia</a>
+          <a href={renderSource()}>wikipedia</a>
           <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12">
             <path
               fill="#FFF"

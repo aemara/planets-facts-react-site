@@ -21,5 +21,5 @@
 }
 
 body {
-  background: url(/src/assets/background-stars.svg), #070724;
+  background: url("./assets/background-stars.svg"), #070724;
 }

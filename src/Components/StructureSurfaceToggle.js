@@ -19,7 +19,7 @@ const ToggleButton = styled.button`
   padding: 0 .3em 2em .3em;
   background: none;
   color: #ffffff;
-  border-bottom: 4px solid rgba(65, 158, 187, 0);
+  border-bottom: ${({active}) => active ? '4px solid rgba(65, 158, 187, 1)' : '4px solid rgba(65, 158, 187, 0)'};
 
   &:hover {
     cursor: pointer;
@@ -30,11 +30,24 @@ const ToggleButton = styled.button`
 const StructureSurfaceToggle = ({aspect, changeAspect}) => {
     return (
       <MobileToggle>
-        <ToggleButton onClick={() => changeAspect("overview")} >overview</ToggleButton>
-        <ToggleButton onClick={() => changeAspect("structure")}>
+        <ToggleButton
+          onClick={() => changeAspect("overview")}
+          active={aspect === "overview" ? true : false}
+        >
+          overview
+        </ToggleButton>
+        <ToggleButton
+          onClick={() => changeAspect("structure")}
+          active={aspect === "structure" ? true : false}
+        >
           structure
         </ToggleButton>
-        <ToggleButton onClick={() => changeAspect("surface")}>surface</ToggleButton>
+        <ToggleButton
+          onClick={() => changeAspect("surface")}
+          active={aspect === "surface" ? true : false}
+        >
+          surface
+        </ToggleButton>
       </MobileToggle>
     );
 }

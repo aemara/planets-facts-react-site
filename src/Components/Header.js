@@ -106,56 +106,96 @@ const Header = ({planet, changePlanet}) => {
         </Container>
 
         <Navigation showMenu={showMenu}>
-          <NavButton onClick={() => changePlanet("Mercury")}>
+          <NavButton
+            onClick={() => {
+              changePlanet("Mercury");
+              setShowMenu(false);
+            }}
+          >
             <NavColoredIcon color="var(--clr-nav-icon-mercury)"></NavColoredIcon>
             <p style={{ width: "80%", "text-align": "left" }}>mercury</p>
             <svg xmlns="http://www.w3.org/2000/svg" width="6" height="8">
               <path fill="none" stroke="#FFF" opacity=".4" d="M1 0l4 4-4 4" />
             </svg>
           </NavButton>
-          <NavButton onClick={() => changePlanet("Venus")}>
+          <NavButton
+            onClick={() => {
+              changePlanet("Venus");
+              setShowMenu(false);
+            }}
+          >
             <NavColoredIcon color="var(--clr-nav-icon-venus)"></NavColoredIcon>
             <p style={{ width: "80%", "text-align": "left" }}>venus</p>
             <svg xmlns="http://www.w3.org/2000/svg" width="6" height="8">
               <path fill="none" stroke="#FFF" opacity=".4" d="M1 0l4 4-4 4" />
             </svg>
           </NavButton>
-          <NavButton onClick={() => changePlanet("Earth")}>
+          <NavButton
+            onClick={() => {
+              changePlanet("Earth");
+              setShowMenu(false);
+            }}
+          >
             <NavColoredIcon color="var(--clr-nav-icon-earth)"></NavColoredIcon>
             <p style={{ width: "80%", "text-align": "left" }}>earth</p>
             <svg xmlns="http://www.w3.org/2000/svg" width="6" height="8">
               <path fill="none" stroke="#FFF" opacity=".4" d="M1 0l4 4-4 4" />
             </svg>
           </NavButton>
-          <NavButton onClick={() => changePlanet("Mars")}>
+          <NavButton
+            onClick={() => {
+              changePlanet("Mars");
+              setShowMenu(false);
+            }}
+          >
             <NavColoredIcon color="var(--clr-nav-icon-mars)"></NavColoredIcon>
             <p style={{ width: "80%", "text-align": "left" }}>mars</p>
             <svg xmlns="http://www.w3.org/2000/svg" width="6" height="8">
               <path fill="none" stroke="#FFF" opacity=".4" d="M1 0l4 4-4 4" />
             </svg>
           </NavButton>
-          <NavButton onClick={() => changePlanet("Jupiter")}>
+          <NavButton
+            onClick={() => {
+              changePlanet("Jupiter");
+              setShowMenu(false);
+            }}
+          >
             <NavColoredIcon color="var(--clr-nav-icon-jupiter)"></NavColoredIcon>
             <p style={{ width: "80%", "text-align": "left" }}>jupiter</p>
             <svg xmlns="http://www.w3.org/2000/svg" width="6" height="8">
               <path fill="none" stroke="#FFF" opacity=".4" d="M1 0l4 4-4 4" />
             </svg>
           </NavButton>
-          <NavButton onClick={() => changePlanet("Saturn")}>
+          <NavButton
+            onClick={() => {
+              changePlanet("Saturn");
+              setShowMenu(false);
+            }}
+          >
             <NavColoredIcon color="var(--clr-nav-icon-saturn)"></NavColoredIcon>
             <p style={{ width: "80%", "text-align": "left" }}>saturn</p>
             <svg xmlns="http://www.w3.org/2000/svg" width="6" height="8">
               <path fill="none" stroke="#FFF" opacity=".4" d="M1 0l4 4-4 4" />
             </svg>
           </NavButton>
-          <NavButton onClick={() => changePlanet("Uranus")}>
+          <NavButton
+            onClick={() => {
+              changePlanet("Uranus");
+              setShowMenu(false);
+            }}
+          >
             <NavColoredIcon color="var(--clr-nav-icon-uranus)"></NavColoredIcon>
             <p style={{ width: "80%", "text-align": "left" }}>uranus</p>
             <svg xmlns="http://www.w3.org/2000/svg" width="6" height="8">
               <path fill="none" stroke="#FFF" opacity=".4" d="M1 0l4 4-4 4" />
             </svg>
           </NavButton>
-          <NavButton onClick={() => changePlanet("Neptune")}>
+          <NavButton
+            onClick={() => {
+              changePlanet("Neptune");
+              setShowMenu(false);
+            }}
+          >
             <NavColoredIcon color="var(--clr-nav-icon-neptune)"></NavColoredIcon>
             <p style={{ width: "80%", "text-align": "left" }}>neptune</p>
             <svg xmlns="http://www.w3.org/2000/svg" width="6" height="8">

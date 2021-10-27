@@ -4,6 +4,7 @@ import styled from 'styled-components';
 const DescriptionSection = styled.section`
   color: #ffffff;
   text-align: center;
+  max-width: 550px;
 `;
 
 const PlanetTitle = styled.h2`

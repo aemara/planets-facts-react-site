@@ -7,6 +7,7 @@ const MobileToggle = styled.div`
   border-bottom: 1px solid rgba(151, 151, 151, 0.1);
   padding: 1.5em 2em 0 2em;
   justify-content: space-between;
+  
 `;
 
 const ToggleButton = styled.button`

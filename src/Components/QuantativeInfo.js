@@ -4,6 +4,8 @@ import styled from 'styled-components';
 const QuantativeInfoSection = styled.div`
     color: #ffffff;
     margin-top: 1.75em; 
+    width: 100%;
+    max-width: 450px;
 `;
 
 const Attribute = styled.div`

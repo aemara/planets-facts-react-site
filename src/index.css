@@ -8,6 +8,15 @@
   --clr-nav-icon-uranus: #65f0d5;
   --clr-nav-icon-neptune: #497efa;
 
+  --clr-toggle-mercury: #419ebb;
+  --clr-toggle-venus: #eda249;
+  --clr-toggle-earth: #6d2ed5;
+  --clr-toggle-mars: #d14c32;
+  --clr-toggle-jupiter: #d83a34;
+  --clr-toggle-saturn: #cd5120;
+  --clr-toggle-uranus: #1ec1a2;
+  --clr-toggle-neptune: #2d68f0;
+
   /*FONTS*/
 
   --ff-spartan: "Spartan", sans-serif;
@@ -22,4 +31,8 @@
 
 body {
   background: url("./assets/background-stars.svg"), #070724;
+}
+
+button {
+  font-size: inherit;
 }

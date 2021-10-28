@@ -3,8 +3,16 @@ import styled from 'styled-components';
 
 const DescriptionSection = styled.section`
   color: #ffffff;
-  text-align: center;
-  max-width: 550px;
+  text-align: ${({ screenSize }) =>
+    screenSize === "tablet" ? "left" : "center"};
+
+  ${({ screenSize }) =>
+    screenSize === "tablet" ? "width:50%;" : "max-width: 550px;"}
+
+  ${({ screenSize }) =>
+    {if(screenSize === 'tablet') {
+      return ('display: flex; flex-direction: column; align-items: flex-start;')
+    }}}
 `;
 
 const PlanetTitle = styled.h2`
@@ -18,7 +26,7 @@ const Description = styled.p`
   font-size: 0.68rem;
   font-family: var(--ff-spartan);
   line-height: 22px;
-  margin-bottom: 1em;
+  margin-bottom: 3.5em;
 `;
 
 const SourceLink = styled.div`
@@ -42,7 +50,7 @@ const SourceLink = styled.div`
   }
 `;
 
-export const PlanetDescription = ({planetData, aspect}) => {
+export const PlanetDescription = ({planetData, aspect, screenSize}) => {
 
     const renderDescription = () => {
         if(aspect === 'overview') {
@@ -68,7 +76,7 @@ export const PlanetDescription = ({planetData, aspect}) => {
     
 
     return (
-      <DescriptionSection>
+      <DescriptionSection screenSize={screenSize}>
         <PlanetTitle>{planetData.name}</PlanetTitle>
         <Description>
           {renderDescription()}

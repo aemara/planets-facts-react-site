@@ -114,7 +114,8 @@ const Header = ({planet, changePlanet, screenSize}) => {
       
       if(screenSize === 'tablet') {
         const navList = data.map((planet) => (
-          <NavButton>{planet.name}</NavButton>
+          <NavButton onClick={() => {
+                  changePlanet(planet.name)}}>{planet.name}</NavButton>
         ));
         return (
           <HeaderElement>

@@ -12,8 +12,16 @@ const MainContainer = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 1.5em;
+  padding: 0 ${({screenSize}) => screenSize === 'tablet' ? '2.5em' : '1.5em'};
+  margin-bottom: 3em;
 `;
+
+const DescriptionToggleContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`
 
 const determineScreenSize = () => {
   if (window.innerWidth < 768) {
@@ -26,7 +34,7 @@ const determineScreenSize = () => {
 };
 
 function App() {
-  const [planet, setPlanet] = useState('Mercury');
+  const [planet, setPlanet] = useState('mercury');
   const [aspect, setAspect] = useState('overview');
   const [planetData, setPlanetData] = useState(data[0]);
   const [screenSize, setScreenSize] = useState(determineScreenSize());
@@ -53,11 +61,16 @@ function App() {
             aspect={aspect}
             changeAspect={changeAspect}
             screenSize={screenSize}
+            planet={planet}
           />
           <MainContainer>
             <PlanetImage planetData={planetData} aspect={aspect} />
-            <PlanetDescription planetData={planetData} aspect={aspect} />
-            <QuantativeInfo planetData={planetData} />
+            <PlanetDescription
+              planetData={planetData}
+              aspect={aspect}
+              screenSize={screenSize}
+            />
+            <QuantativeInfo planetData={planetData} screenSize={screenSize} />
           </MainContainer>
         </div>
       );
@@ -69,15 +82,22 @@ function App() {
             changePlanet={changePlanet}
             screenSize={screenSize}
           />
-          <MainContainer>
+          <MainContainer screenSize={screenSize}>
             <PlanetImage planetData={planetData} aspect={aspect} />
-            <PlanetDescription planetData={planetData} aspect={aspect} />
-            <StructureSurfaceToggle
-              aspect={aspect}
-              changeAspect={changeAspect}
-              screenSize={screenSize}
-            />
-            <QuantativeInfo planetData={planetData} />
+            <DescriptionToggleContainer>
+              <PlanetDescription
+                planetData={planetData}
+                aspect={aspect}
+                screenSize={screenSize}
+              />
+              <StructureSurfaceToggle
+                aspect={aspect}
+                changeAspect={changeAspect}
+                screenSize={screenSize}
+                planet={planet}
+              />
+            </DescriptionToggleContainer>
+            <QuantativeInfo planetData={planetData} screenSize={screenSize} />
           </MainContainer>
         </div>
       );

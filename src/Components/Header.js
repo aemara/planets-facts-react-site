@@ -5,10 +5,11 @@ import data from "../data.json";
 
 const HeaderElement = styled.header`
   display: flex;
-  flex-direction: column;
+  flex-direction: ${({screenSize}) => screenSize === 'desktop' ? 'row' : 'column'};
   align-items: center;
   justify-content: space-between;
-  
+  border-bottom: 
+    ${({ screenSize }) => (screenSize !== 'mobile' ? '1px solid rgba(151, 151, 151, 0.1)' : 'none')};
 `;
 
 const Logo = styled.h1`
@@ -16,8 +17,12 @@ const Logo = styled.h1`
   font-size: 28px;
   color: #ffffff;
   text-transform: uppercase;
-  margin-bottom: ${({ screenSize }) => (screenSize === "tablet" ? "1.5em" : "0")};
+  margin-bottom: ${({ screenSize }) =>
+    screenSize === "tablet" ? "1.5em" : "0"};
   padding-top: ${({ screenSize }) => (screenSize === "tablet" ? "1em" : "0")};
+  width: ${({ screenSize }) => (screenSize === "desktop" ? "80%" : "auto")};
+  padding-left: ${({ screenSize }) =>
+    screenSize === "desktop" ? '1.5em' : '0'};
 `;
 
 const Container = styled.div`
@@ -43,9 +48,9 @@ const NavigationMobile = styled.nav`
 
 const Navigation = styled.nav`
   display: flex;
+  justify-content: space-around;
   width: 100%;
   padding: 0 2em 2.5em 2em;
-  border-bottom: 1px solid rgba(151, 151, 151, 0.1);
 `;
 
 const NavButtonMobile = styled.button`
@@ -83,9 +88,20 @@ const NavButton = styled.button`
   font-weight: 700;
   border: none;
   background: none;
-  width: 100%;
+  width: min-content;
   color: #ffffff;
-  opacity: .6;
+  opacity: 0.6;
+  border-top: ${({ screenSize}) =>
+    screenSize === "desktop" ? "4px solid rgba(255,255,255,0)" : "none"};
+  border-top: ${({active, screenSize, children}) => (active && screenSize === 'desktop') &&  `4px solid var(--clr-toggle-${children})`};  
+  padding-top: ${({ screenSize }) => (screenSize === "desktop" ? "3em" : "0")};
+
+  &:hover {
+    border-top: ${({ screenSize, children }) =>
+      screenSize === "desktop" ? `4px solid var(--clr-toggle-${children})` : "none"};
+    opacity: 1;  
+    cursor: pointer;  
+  }
 `;
 
 const NavColoredIcon = styled.div`
@@ -112,20 +128,7 @@ const Header = ({planet, changePlanet, screenSize}) => {
 
     const renderHeader = () => {
       
-      if(screenSize === 'tablet') {
-        const navList = data.map((planet) => (
-          <NavButton onClick={() => {
-                  changePlanet(planet.name)}}>{planet.name}</NavButton>
-        ));
-        return (
-          <HeaderElement>
-            <Logo screenSize = {screenSize}>the planets</Logo>
-            <Navigation showMenu = {true}>
-              {navList}
-            </Navigation>
-          </HeaderElement>
-        );
-      } else if (screenSize === 'mobile') {
+     if (screenSize === 'mobile') {
         const navList = data.map((planet) => (
           <NavButtonMobile onClick={() => {
                   changePlanet(planet.name);
@@ -160,6 +163,24 @@ const Header = ({planet, changePlanet, screenSize}) => {
             <NavigationMobile showMenu = {showMenu}>{navList}</NavigationMobile>
           </HeaderElement>
         );
+    } else {
+      const navList = data.map((planetObject) => (
+        <NavButton screenSize={screenSize}
+          onClick={() => {
+            changePlanet(planetObject.name);
+          }} active = {planet === planetObject.name ? true : false}
+        >
+          {planetObject.name}
+        </NavButton>
+      ));
+      return (
+        <HeaderElement screenSize={screenSize}>
+          <Logo screenSize={screenSize}>the planets</Logo>
+          <Navigation showMenu={true} screenSize={screenSize}>
+            {navList}
+          </Navigation>
+        </HeaderElement>
+      );
     }
   }
 

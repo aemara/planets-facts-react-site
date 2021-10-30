@@ -10,23 +10,38 @@ import { useState ,useEffect} from 'react';
 
 const MainContainer = styled.main`
   display: flex;
-  flex-direction: column;
+  flex-direction: ${({ screenSize }) =>
+    screenSize === "desktop" ? "row" : "column"};
+  flex-wrap: ${({ screenSize }) =>
+    screenSize === "desktop" ? "wrap" : "no-wrap"};
+  justify-content: ${({ screenSize }) =>
+    screenSize === "desktop" ? "space-between" : ""};
   align-items: center;
-  padding: 0 ${({screenSize}) => screenSize === 'tablet' ? '2.5em' : '1.5em'};
+  padding: ${({ screenSize }) => {
+    if (screenSize === "tablet") return "0 2.5em";
+    else if (screenSize === "desktop") return "0 7.5em";
+    else return "0 1.5em";
+  }};
+  margin: 0 auto;
+  margin-top: ${({ screenSize }) => (screenSize === "desktop" ? "6em" : "1em")};
   margin-bottom: 3em;
+  max-width: ${({ screenSize }) => (screenSize === "mobile" ? "530px" : "1200px")};
 `;
 
 const DescriptionToggleContainer = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: ${({ screenSize }) =>
+    screenSize === "tablet" ? "row" : "column"};
+  width: ${({ screenSize }) => (screenSize === "desktop" ? "35%" : "auto")};
+  gap: ${({ screenSize }) => (screenSize === "desktop" ? "2.5em" : "0")};
   justify-content: space-between;
   align-items: center;
-`
+`;
 
 const determineScreenSize = () => {
   if (window.innerWidth < 768) {
     return "mobile";
-  } else if (window.innerWidth > 768 && window.innerWidth < 1000) {
+  } else if (window.innerWidth > 768 && window.innerWidth < 1200) {
     return "tablet";
   } else {
     return "desktop";
@@ -64,7 +79,11 @@ function App() {
             planet={planet}
           />
           <MainContainer>
-            <PlanetImage planetData={planetData} aspect={aspect} />
+            <PlanetImage
+              planetData={planetData}
+              aspect={aspect}
+              screenSize={screenSize}
+            />
             <PlanetDescription
               planetData={planetData}
               aspect={aspect}
@@ -74,33 +93,37 @@ function App() {
           </MainContainer>
         </div>
       );
-    } else if (screenSize === "tablet") {
-      return (
-        <div className="App">
-          <Header
-            planet={planet}
-            changePlanet={changePlanet}
-            screenSize={screenSize}
-          />
-          <MainContainer screenSize={screenSize}>
-            <PlanetImage planetData={planetData} aspect={aspect} />
-            <DescriptionToggleContainer>
-              <PlanetDescription
+    } else {
+        return (
+          <div className="App">
+            <Header
+              planet={planet}
+              changePlanet={changePlanet}
+              screenSize={screenSize}
+            />
+            <MainContainer screenSize={screenSize}>
+              <PlanetImage
                 planetData={planetData}
                 aspect={aspect}
                 screenSize={screenSize}
               />
-              <StructureSurfaceToggle
-                aspect={aspect}
-                changeAspect={changeAspect}
-                screenSize={screenSize}
-                planet={planet}
-              />
-            </DescriptionToggleContainer>
-            <QuantativeInfo planetData={planetData} screenSize={screenSize} />
-          </MainContainer>
-        </div>
-      );
+              <DescriptionToggleContainer screenSize={screenSize}>
+                <PlanetDescription
+                  planetData={planetData}
+                  aspect={aspect}
+                  screenSize={screenSize}
+                />
+                <StructureSurfaceToggle
+                  aspect={aspect}
+                  changeAspect={changeAspect}
+                  screenSize={screenSize}
+                  planet={planet}
+                />
+              </DescriptionToggleContainer>
+              <QuantativeInfo planetData={planetData} screenSize={screenSize} />
+            </MainContainer>
+          </div>
+        );
     }
   };
 
@@ -109,7 +132,7 @@ function App() {
     window.addEventListener('resize', () => {
       if (window.innerWidth < 768) {
         setScreenSize('mobile');
-      } else if (window.innerWidth > 768 && window.innerWidth < 1000) {
+      } else if (window.innerWidth > 768 && window.innerWidth < 1200) {
         setScreenSize('tablet');
       } else {
         setScreenSize('desktop');

@@ -4,26 +4,27 @@ import styled from 'styled-components';
 const DescriptionSection = styled.section`
   color: #ffffff;
   text-align: ${({ screenSize }) =>
-    screenSize === "tablet" ? "left" : "center"};
+    screenSize !== 'mobile' ? "left" : "center"};
 
   ${({ screenSize }) =>
     screenSize === "tablet" ? "width:50%;" : "max-width: 550px;"}
 
-  ${({ screenSize }) =>
-    {if(screenSize === 'tablet') {
-      return ('display: flex; flex-direction: column; align-items: flex-start;')
-    }}}
+  display: ${({ screenSize }) => (screenSize !== "mobile" ? "flex" : "")};
+  flex-direction: ${({ screenSize }) =>
+    screenSize !== "mobile" ? "column" : ""};
+  align-items: ${({ screenSize }) => (screenSize !== "mobile" ? "flex-start" : "")};
 `;
 
 const PlanetTitle = styled.h2`
     font-family: var(--ff-antonio);
-    font-size: 2.5rem;
+    font-size: ${({ screenSize }) => (screenSize === "desktop" ? "5rem" : "2.5rem")};
     text-transform: uppercase;
     margin-bottom: .5em;
-`
+`;
 
 const Description = styled.p`
-  font-size: 0.68rem;
+  font-size: ${({ screenSize }) =>
+    screenSize === "desktop" ? ".875rem" : ".68rem"};
   font-family: var(--ff-spartan);
   line-height: 22px;
   margin-bottom: 3.5em;
@@ -31,22 +32,23 @@ const Description = styled.p`
 
 const SourceLink = styled.div`
   font-family: var(--ff-spartan);
-  font-size: 0.75rem;
+  font-size: ${({ screenSize }) =>
+    screenSize === "desktop" ? ".875rem" : ".75rem"};
   text-transform: capitalize;
   display: flex;
   align-items: center;
   justify-content: center;
-    
+
   & span {
     opacity: 0.5;
   }
 
   & a {
-      font-weight: 700;
-      color: #ffffff;
-      opacity: .5;
-      margin-right: .2em;
-      margin-left: .2em;
+    font-weight: 700;
+    color: #ffffff;
+    opacity: 0.5;
+    margin-right: 0.2em;
+    margin-left: 0.2em;
   }
 `;
 
@@ -77,11 +79,9 @@ export const PlanetDescription = ({planetData, aspect, screenSize}) => {
 
     return (
       <DescriptionSection screenSize={screenSize}>
-        <PlanetTitle>{planetData.name}</PlanetTitle>
-        <Description>
-          {renderDescription()}
-        </Description>
-        <SourceLink>
+        <PlanetTitle screenSize={screenSize}>{planetData.name}</PlanetTitle>
+        <Description screenSize={screenSize}>{renderDescription()}</Description>
+        <SourceLink screenSize={screenSize}>
           <span>source : </span>
           <a href={renderSource()}>wikipedia</a>
           <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12">

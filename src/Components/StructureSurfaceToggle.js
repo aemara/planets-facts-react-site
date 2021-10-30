@@ -17,6 +17,7 @@ const Toggle = styled.div`
   font-family: "Spartan", sans-serif;
   font-size: 0.56rem;
   gap: 1.5em;
+  width: ${({screenSize}) => screenSize === 'desktop' ? "100%" : ''};
 `;
 
 const MobileToggleButton = styled.button`
@@ -26,39 +27,34 @@ const MobileToggleButton = styled.button`
   letter-spacing: 1.93px;
   font-weight: 700;
   border: none;
-  padding: 0 .3em 2em .3em;
+  padding: 0 0.3em 2em 0.3em;
   background: none;
   color: #ffffff;
-  border-bottom: ${({active}) => active ? '4px solid rgba(65, 158, 187, 1)' : '4px solid rgba(65, 158, 187, 0)'};
+  border-bottom: ${({ active, planet }) => active && `4px solid var(--clr-toggle-${planet})`};
 
   &:active {
-    border-bottom: 4px solid rgba(65, 158, 187, 1);
+    border-bottom: ${({ planet }) => `4px solid var(--clr-toggle-${planet})`};
   }
 `;
 
 const ToggleButton = styled.button`
   letter-spacing: 1.93px;
-  font-size: 0.56rem;
+  font-size: ${({ screenSize }) =>
+    screenSize === "desktop" ? ".75rem" : ".56rem"};
   text-transform: uppercase;
   font-weight: 700;
-  background: ${({ active, planet }) => (active ? `var(--clr-toggle-${planet})` : 'none')};
+  background: ${({ active, planet }) =>
+    active ? `var(--clr-toggle-${planet})` : "none"};
   color: #ffffff;
   border: 1px solid rgba(151, 151, 151, 0.2);
   display: flex;
   padding: 1.5em 7em 1.5em 2em;
-  
 
   &:hover {
-    background: ${({ planet }) => `var(--clr-toggle-${planet})`};
+    background: ${({ planet }) => "rgba(216, 216, 216, .2)"};
+    cursor: pointer;
   }
 
-  &:focus {
-    background: ${({ planet }) => `var(--clr-toggle-${planet})`};
-  }
-
-  &:active {
-    background: ${({ planet }) => `var(--clr-toggle-${planet})`};
-  }
 `;
 
 const ToggleText = styled.p`
@@ -80,18 +76,21 @@ const StructureSurfaceToggle = ({aspect, changeAspect, screenSize, planet}) => {
             <MobileToggleButton
               onClick={() => changeAspect("overview")}
               active={aspect === "overview" ? true : false}
+              planet={planet}
             >
               overview
             </MobileToggleButton>
             <MobileToggleButton
               onClick={() => changeAspect("structure")}
               active={aspect === "structure" ? true : false}
+              planet={planet}
             >
               structure
             </MobileToggleButton>
             <MobileToggleButton
               onClick={() => changeAspect("surface")}
               active={aspect === "surface" ? true : false}
+              planet={planet}
             >
               surface
             </MobileToggleButton>
@@ -99,11 +98,12 @@ const StructureSurfaceToggle = ({aspect, changeAspect, screenSize, planet}) => {
         );
       } else {
         return (
-          <Toggle>
+          <Toggle screenSize={screenSize}>
             <ToggleButton
               onClick={() => changeAspect("overview")}
               active={aspect === "overview" ? true : false}
               planet={planet}
+              screenSize={screenSize}
             >
               <ToggleNumber>01</ToggleNumber>
               <ToggleText>overview</ToggleText>
@@ -112,6 +112,7 @@ const StructureSurfaceToggle = ({aspect, changeAspect, screenSize, planet}) => {
               onClick={() => changeAspect("structure")}
               active={aspect === "structure" ? true : false}
               planet={planet}
+              screenSize={screenSize}
             >
               <ToggleNumber>02</ToggleNumber>
               <ToggleText>internal structure</ToggleText>
@@ -120,6 +121,7 @@ const StructureSurfaceToggle = ({aspect, changeAspect, screenSize, planet}) => {
               onClick={() => changeAspect("surface")}
               active={aspect === "surface" ? true : false}
               planet={planet}
+              screenSize={screenSize}
             >
               <ToggleNumber>03</ToggleNumber>
               <ToggleText>surface geology</ToggleText>

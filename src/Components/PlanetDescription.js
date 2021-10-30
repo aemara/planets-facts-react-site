@@ -3,16 +3,14 @@ import styled from 'styled-components';
 
 const DescriptionSection = styled.section`
   color: #ffffff;
-  text-align: ${({ screenSize }) =>
-    screenSize !== 'mobile' ? "left" : "center"};
-
-  ${({ screenSize }) =>
-    screenSize === "tablet" ? "width:50%;" : "max-width: 550px;"}
-
+  text-align: ${({ screenSize }) => screenSize !== "mobile" ? "left" : "center"};
+  width: ${({ screenSize }) => (screenSize === "tablet" ? "50%" : "100%")};
+  max-width: ${({ screenSize }) => screenSize === "mobile" && "470px"};
   display: ${({ screenSize }) => (screenSize !== "mobile" ? "flex" : "")};
   flex-direction: ${({ screenSize }) =>
     screenSize !== "mobile" ? "column" : ""};
-  align-items: ${({ screenSize }) => (screenSize !== "mobile" ? "flex-start" : "")};
+  align-items: ${({ screenSize }) =>
+    screenSize !== "mobile" ? "flex-start" : ""};
 `;
 
 const PlanetTitle = styled.h2`

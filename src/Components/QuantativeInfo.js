@@ -3,8 +3,9 @@ import styled from 'styled-components';
 
 const QuantativeInfoSection = styled.div`
   color: #ffffff;
-  margin-top: ${({ screenSize }) => (screenSize === "desktop" ? "4em" : "1.75em")};
+  margin-top: ${({ screenSize }) => screenSize === "desktop" ? "4em" : "1.75em"};
   width: 100%;
+  max-width: ${({ screenSize }) => screenSize === "mobile" && "470px"};
   display: ${({ screenSize }) => (screenSize !== "mobile" ? "flex" : "")};
   gap: ${({ screenSize }) => (screenSize !== "mobile" ? "1em" : "0")};
 `;
